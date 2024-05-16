@@ -19,7 +19,8 @@ export const tokenService = {
     const cookies = nookies.get(ctx);
     return cookies[ACCESS_TOKEN_KEY] || '';
   },
-  deleteToken(){
+  deleteToken(ctx = null){
     globalThis?.sessionStorage?.removeItem(ACCESS_TOKEN_KEY);
+    nookies.destroy(ctx, ACCESS_TOKEN_KEY);
   }
 }
