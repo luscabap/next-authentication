@@ -15,7 +15,7 @@ export const authService = {
       tokenService.saveToken(body.data.access_token);
     })
   },
-  async getSession(ctx){
+  async getSession(ctx = null){
     const token = tokenService.getToken(ctx);
     return HttpClient(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/session`, {
       method: 'GET',
