@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { withSession } from '../src/services/auth/session';
 
 function AuthPageSSR(props){
@@ -6,6 +7,7 @@ function AuthPageSSR(props){
       <h1>
         Auth Page Server Side Rendering
       </h1>
+      <Link href="/logout">Logout</Link>
       <pre>
       {JSON.stringify(props, null, 2)}
       </pre>
