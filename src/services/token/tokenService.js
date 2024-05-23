@@ -1,6 +1,6 @@
 import nookies from "nookies";
 
-const ACCESS_TOKEN_KEY = 'VJI-U3BWRkHd3WxGcjpGiA';
+const ACCESS_TOKEN_KEY = 'ACESS_TOKEN';
 
 const ONE_SECOND = 1;
 const ONE_MINUTE = ONE_SECOND * 60;
@@ -10,7 +10,8 @@ const ONE_YEAR = ONE_DAY * 365;
 
 export const tokenService = {
   saveToken(accessToken, ctx = null){
-    // sessionStorage.setItem(ACCESS_TOKEN_KEY, accessToken)
+    globalThis?.localStorage?.setItem(ACCESS_TOKEN_KEY, accessToken);
+    globalThis?.sessionStorage?.setItem(ACCESS_TOKEN_KEY, accessToken);
     nookies.set(ctx, ACCESS_TOKEN_KEY, accessToken, {
       maxAge: ONE_YEAR,
       path: '/'
@@ -21,6 +22,8 @@ export const tokenService = {
     return cookies[ACCESS_TOKEN_KEY] || '';
   },
   deleteToken(ctx = null){
+    globalThis?.localStorage?.removeItem(ACCESS_TOKEN_KEY);
+    globalThis?.sessionStorage?.removeItem(ACCESS_TOKEN_KEY);
     nookies.destroy(ctx, ACCESS_TOKEN_KEY);
   }
 }
